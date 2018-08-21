@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootflat-Admin Template</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- site css -->
+    <link rel="stylesheet" href="/static/utils/dist/css/site.min.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="/static/utils/dist/js/html5shiv.js"></script>
+      <script src="/static/utils/dist/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/utils/dist/js/site.min.js"></script>
+</head>
+<body>
+<!--head-->
+{% include 'guohechu/temp/head.html' %}
+<!--document-->
+<div class="container-fluid">
+
+    <div class="row row-offcanvas row-offcanvas-left">
+
+        <!--sidebar-->
+        {% include 'guohechu/temp/side.html' %}
+        <!-- content -->
+        <div class="col-xs-12 col-sm-9 content">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span
+                            class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>
+                        {{ PanelTitle |default:'护照管理' }}</h3>
+                </div>
+
+                {% block content %} <!--所有的content内容从这里继承-->
+                {% endblock %}
+
+
+                {% include 'guohechu/temp/foot.html' %}
+            </div>
+        </div><!-- content -->
+
+
+    </div>
+</div>
+
+<!--footer-->
+{#    {% include 'guohechu/temp/foot.html' %}#}
+
+</body>
+</html>
