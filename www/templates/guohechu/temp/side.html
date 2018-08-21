@@ -8,7 +8,7 @@
                     class="glyphicon glyphicon-chevron-right"></span></a>
 
             <div class="collapse" id="demo1" style="height: 0px;">
-                <a href="javascript:;" class="list-group-item">&nbsp&nbsp&nbsp护照管理</a>
+                <a href="{% url 'passportlist' %}" class="list-group-item">&nbsp&nbsp&nbsp护照管理</a>
                 <a href="javascript:;" class="list-group-item">&nbsp&nbsp&nbsp护照查询</a>
                 <a href="javascript:;" class="list-group-item">&nbsp&nbsp&nbsp护照统计</a>
             </div>
@@ -26,16 +26,18 @@
             </div>
 
         </li>
-
+        {% if username == 'admin' %}
         <li>
             <a href="#demo3" class="list-group-item collapsed" data-toggle="collapse">用户管理 <span
                     class="glyphicon glyphicon-chevron-right"></span></a>
 
             <div class="collapse" id="demo3" style="height: 0px;">
                 <a href="javascript:;" class="list-group-item">&nbsp&nbsp&nbsp用户列表</a>
+                <a href="javascript:;" class="list-group-item">&nbsp&nbsp&nbsp用户权限</a>
             </div>
 
         </li>
+        {% endif %}
 
 
     </ul>

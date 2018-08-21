@@ -33,11 +33,12 @@
                             class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a>
                         {{ PanelTitle |default:'护照管理' }}</h3>
                 </div>
+                <div class = 'panel-body'>
 
                 {% block content %} <!--所有的content内容从这里继承-->
                 {% endblock %}
 
-
+                </div>
                 {% include 'guohechu/temp/foot.html' %}
             </div>
         </div><!-- content -->

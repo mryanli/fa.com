@@ -8,7 +8,7 @@ from django.db import models
 
 class Group(models.Model):
 
-    apply_no = models.CharField(max_length=20)
+    apply_no = models.CharField(max_length=20,unique=True)
     department_made = models.CharField(max_length=20)
     mission_name = models.CharField(max_length=100)
     mission_background = models.CharField(max_length=300)
@@ -70,7 +70,9 @@ class Member(models.Model):
 
 
 class Passport(models.Model):
-    num = models.CharField(max_length=10)
+    num = models.CharField(max_length=10,unique=True)
+    name = models.CharField(max_length=15)
+    pinyin = models.CharField(max_length=30)
     auth_date = models.DateField(default=timezone.now)
     expire_date = models.DateField(default=timezone.now)
     outin_state = models.CharField(max_length=10)  #正常借出、在库、销毁、寄往北京注销、随人员调离
@@ -96,7 +98,7 @@ class Outmenu(models.Model):
 
 
 class User(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=10,unique=True)
     password = models.CharField(max_length=30)
     role = models.CharField(max_length=10)
     tel = models.CharField(max_length=15)

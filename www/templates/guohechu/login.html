@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Login</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,51 +16,65 @@
     <![endif]-->
     <script type="text/javascript" src="/static/utils/dist/js/site.min.js"></script>
     <style>
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #044F67;
-        color: #ECF0F1
-      }
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #044F67;
+            color: #ECF0F1
+        }
     </style>
-  </head>
-  <body>
-    <div class="container">
-      <form class="form-signin" role="form" action="{% url "index" %}" method="post">
-          {% csrf_token %}
+</head>
+<body>
+<div class="container">
+
+
+    <form class="form-signin" role="form" action="{% url "login" %}" method="post">
+
+
+        {% csrf_token %}
         <h3 class="form-signin-heading">请登录</h3>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="glyphicon glyphicon-user"></i>
+
+                {% if errmsg %}
+            <div class="alert alert-danger form-group">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ errmsg }}.
             </div>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" style="color: #373e4a;
+        {% endif %}
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </div>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                       autocomplete="off" style="color: #373e4a;
 background-color: white;
 border-color: none;"/>
-          </div>
+            </div>
         </div>
 
         <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class=" glyphicon glyphicon-lock "></i>
-            </div>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" style="color: #373e4a;
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class=" glyphicon glyphicon-lock "></i>
+                </div>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                       autocomplete="off" style="color: #373e4a;
 background-color: white;
-border-color: none;" />
-          </div>
+border-color: none;"/>
+            </div>
         </div>
 
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> &nbsp 记住登录状态
+            <input type="checkbox" value="remember-me"> &nbsp 记住登录状态
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-      </form>
+    </form>
 
-    </div>
-    <div class="clearfix"></div>
-    <br><br>
-    <!--footer-->
+</div>
+<div class="clearfix"></div>
+<br><br>
+<!--footer-->
 
-  </body>
+</body>
 </html>
