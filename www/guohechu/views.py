@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from django.shortcuts import render,redirect
-from .models import User
+from .models import User,Passport
 
 # Create your views here.
 
@@ -44,5 +44,41 @@ def logout(req):
     return render(req,'guohechu/login.html')
 
 def passportlist(req):
+    passports = Passport.objects.all()[0:10]
+    data = {'username':req.session['username'],
+            "passports":passports
+            }
+    return render(req,'guohechu/passportlist.html',data)
 
-    return render(req,'guohechu/passportlist.html',locals())
+
+def addpassport(req):
+
+    if req.method =='POST':
+
+        num = req.POST['num']
+        name =  req.POST['name']
+        pinyin = req.POST['pinyin']
+        sex = req.POST['sex']
+        auth_date = req.POST['auth_date']
+        expire_date = req.POST['expire_date']
+        annotate = req.POST['annotate']
+
+        print(name,pinyin,sex,auth_date,expire_date,annotate)
+        Passport.objects.create(name=name,pinyin=pinyin,num = num,sex=sex,
+                                auth_date=auth_date,expire_date=expire_date,
+                                annotate=annotate,outin_state='在库')
+        return redirect('guohechu/passportlist.html',req.session['username']);
+
+    return render(req,'guohechu/addpassport.html',{'username':req.session['username']})
+
+
+def delpassport(req,id):
+    Passport.objects.filter(id = id).delete()
+    return redirect('guohechu/passportlist.html',{'username':req.session['username']})
+
+
+def editpassport(req,id):
+    passport = Passport.objects.get(id = id)
+    print(passport.expire_date)
+
+    return render(req,'guohechu/editpassport.html',{'username':req.session['username'],'passport':passport})

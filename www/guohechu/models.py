@@ -70,15 +70,19 @@ class Member(models.Model):
 
 
 class Passport(models.Model):
+
     num = models.CharField(max_length=10,unique=True)
     name = models.CharField(max_length=15)
     pinyin = models.CharField(max_length=30)
+    birthday = models.DateField(default=timezone.now)
+    sex = models.IntegerField(default=1)
     auth_date = models.DateField(default=timezone.now)
     expire_date = models.DateField(default=timezone.now)
     outin_state = models.CharField(max_length=10)  #正常借出、在库、销毁、寄往北京注销、随人员调离
     is_cancel = models.BooleanField(default= False) #已注销，未注销
     create_time = models.DateTimeField(default=timezone.now)
     create_operator = models.CharField(max_length=15,default='system')
+    annotate = models.TextField(max_length=50)
 
 
 class PassportOutIn(models.Model):
