@@ -99,6 +99,8 @@ class Outmenu(models.Model):
     out_opertor = models.CharField(max_length=10)
     out_contactor = models.CharField(max_length=10)
     out_contact_tel = models.CharField(max_length=15)
+    is_all_back = models.BooleanField(default=False)
+    out_passports = models.CharField(max_length=100)
 
 
 class User(models.Model):

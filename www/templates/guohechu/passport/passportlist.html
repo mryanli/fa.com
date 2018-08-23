@@ -46,9 +46,9 @@
 
                     </td>
                     <td>{{ passport.name }}</td>
-                    <td>{{ passport.birthday }}</td>
+                    <td>{{ passport.birthday|date:'Y-m-d' }}</td>
                     <td>{{ passport.num }}</td>
-                    <td>{{ passport.expire_date }}</td>
+                    <td>{{ passport.expire_date|date:'Y-m-d' }}</td>
                     <td>{{ passport.outin_state }}</td>
                     <td style="{margin-right: 0px;width: 30%;}">
                         <a href="{% url 'delpassport' passport.id  %}" onclick="return confirm('确定要删除吗？');">

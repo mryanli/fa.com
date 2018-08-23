@@ -19,7 +19,7 @@
             </div>
 
             <div class="panel-body">
-                <form novalidate="" role="form" class="form-horizontal" method="POST" action="{% url 'addpassport' %}">
+                <form novalidate="" role="form" class="form-horizontal" method="POST" action="{% url 'editpassport' passport.id %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <label class="col-md-2 control-label">姓名</label>
@@ -34,11 +34,12 @@
                         </div>
                         <label class="col-md-1 control-label">性别</label>
                         <div class="col-md-2">
-                            <input type="radio" name="sex" checked value="1">
-                            男
+                            <input type="radio" name="sex" value="1" {% if passport.sex == 1 %}checked{% endif %}>
 
-                            <input type="radio" name='sex' value="0">
-                            女
+                            <span>男</span>
+
+                            <input type="radio" name='sex' value="0" {% if passport.sex == 0 %}checked{% endif %}>
+                            <span>女</span>
                         </div>
 
                     </div>
@@ -48,12 +49,12 @@
                         <label class="col-md-2 control-label">出生日期</label>
                         <div class="col-md-4">
                             <input type="date" required="" id="pass_sex" class="form-control"
-                                   name="birthday" value = "{{  passport.birthday  }}">
+                                   name="birthday" value = "{{  passport.birthday |date:'Y-m-d' }}">
                         </div>
 
                         <label class="col-md-2 control-label">护照号</label>
                         <div class="col-md-4">
-                            <input type="text" required="" value="PE" id="pass_num" class="form-control"
+                            <input type="text" required=""  id="pass_num" class="form-control"
                                    name="num" value = "{{ passport.num  }}">
                         </div>
 
@@ -65,13 +66,13 @@
                         <label class="col-md-2 control-label">签发日期</label>
                         <div class="col-md-4">
                             <input type="date" required="" id="pass_authdate" class="form-control"
-                                   name="auth_date" value = "{{ passport.auth_date }}">
+                                   name="auth_date" value = "{{ passport.auth_date|date:'Y-m-d' }}">
                         </div>
 
                         <label class="col-md-2 control-label">有效期至</label>
                         <div class="col-md-4">
                             <input type="date" required="" id="pass_expire" class="form-control"
-                                   name="expire_date" value = "{{ passport.expire_date }}">
+                                   name="expire_date" value = "{{ passport.expire_date|date:'Y-m-d' }}">
                         </div>
                     </div>
 

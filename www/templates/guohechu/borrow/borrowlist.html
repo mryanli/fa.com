@@ -1,0 +1,105 @@
+{% extends 'guohechu/temp/main.html' %}
+
+
+{% block content %}
+    <!--在这里开始写主界面-->
+
+    <!--头部操作按钮-->
+    <div class="content-row">
+
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{% url 'addborrow' %}">
+                    <button type="button" class="btn btn-primary btn-block">新增借出</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!--头部操作按钮-->
+
+
+    <!--列表开始-->
+    <div class='content-row'>
+        <div class=" col-md-12"></div>
+        <div class="bs-example">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th>序号</th>
+                    <th>借出人</th>
+                    <th>借出时间</th>
+                    <th>借出护照</th>
+                    <th>借出原因</th>
+                    <th>归还完毕</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for m in outmenu %}
+                    <tr style="height: 40px;">
+                        <td>
+
+                            {{ forloop.counter }}
+
+                        </td>
+                        <td>{{ m.out_contactor }}</td>
+                        <td>{{ m.out_time|date:'Y-m-d H:m:s' }}</td>
+                        <td>{{ m.out_passports }}</td>
+                        <td>{{ m.out_why }}</td>
+                        <td>{% if m.is_all_back == True %}
+                            是
+                        {% else %}
+                            否
+                        {% endif %}
+                        </td>
+
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--列表结束-->
+    <!--导航开始-->
+    <div class="col-md-12">
+        <ul class="pagination">
+            <li class="active"><a href="#">上一页</a></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li class="disabled"><a href="#">5</a></li>
+            <li class="active"><a href="#">下一页</a></li>
+        </ul>
+    </div>
+    <!--导航结束-->
+    <!--在这里结束主界面-->
+
+
+
+<script type="text/javascript">
+
+
+    $('#borrowlistlookitem').on('click', function () {
+        layer.open({
+            type: 1,
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '\<\div style="padding:20px;">自定义内容\<\/div>'
+        });
+    });
+
+
+</script>
+
+{% endblock %}
+
+
+

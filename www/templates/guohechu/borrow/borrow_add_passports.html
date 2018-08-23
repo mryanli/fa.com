@@ -1,0 +1,116 @@
+{% extends 'guohechu/temp/main_layer.html' %}
+
+
+{% block sublayer %}
+    <!--在这里开始写弹出层界面-->
+    <div class="content-row">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title"><b>借出护照</b>
+                </div>
+
+            </div>
+
+            <div class="panel-body">
+
+                <table class="table table-hover" id="selected_passports">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>护照号</th>
+                        <th>出生日期</th>
+                        <th>有效期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="selected_passports">
+
+{#                    <tr>#}
+{#                        <td>2</td>#}
+{#                        <td>Jacob</td>#}
+{#                        <td>Thornton</td>#}
+{#                        <td>Thornton</td>#}
+{#                        <td>@fat</td>#}
+{#                        <td>#}
+{#                            <button class="btn-danger del_passport">移除</button>#}
+{#                        </td>#}
+{#                    </tr>#}
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-heading">
+                <div class="panel-title"><b>护照列表</b>
+                </div>
+
+            </div>
+
+            <div class="panel-body">
+
+                <table class="table table-hover" id="passports_list">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>护照号</th>
+                        <th>出生日期</th>
+
+                        <th>有效期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for p in passports %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ p.name }}</td>
+                            <td>{{ p.num }}</td>
+                            <td>{{ p.birthday }}</td>
+                            <td>{{ p.expire_date|date:'Y-m-d' }}</td>
+                            <td>
+                                <button class="btn-primary add_passport" >选中</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+                <div class="content-row">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-3" style="padding-left: 40%;">
+
+
+                            <button class="btn btn-primary">确认</button>
+
+                            <button class="btn btn-primary">取消</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--在这里结束弹出层界面-->
+
+
+    <script>
+
+    $('body').on('click','.add_passport',function () {
+        var cur_r = $(this).parent().parent();
+        var bt = $("#selected_passports");
+        cur_r.clone().appendTo(bt);
+    })
+
+
+    </script>
+
+
+{% endblock %}
+
